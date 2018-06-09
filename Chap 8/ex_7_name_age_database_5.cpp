@@ -1,0 +1,86 @@
+#include<iostream>
+#include"C:\Users\Study\Desktop\Viz Stud\lib_files\std_lib_fac.h"
+
+using namespace std;
+
+vector<string> name;
+vector<string>copyName;
+vector<double> age;
+
+void welcome()
+{
+	cout << "Hello there, welcome to our database:" << endl;
+}
+
+void getName() {
+	string input;
+	cout << "Enter names for the databas, enter done when finished" << endl;
+	while (cin >> input && input != "done")
+	name.push_back(input);
+			}
+
+void getAge() {
+	int Ain;
+	cout << "Enter the age for each person" << endl;
+	for (int i = 0; i < name.size(); i++)
+	{
+		cout << name[i] << endl;
+		cin >> Ain;
+		age.push_back(Ain);
+	}
+	}
+
+
+
+void Vsort()
+{
+	sort(name.begin(), name.end());
+}
+
+void copyV()
+{
+	for (int i = 0; i < name.size(); i++){
+		string x;
+		x = name[i];
+		copyName.push_back(x);
+	}
+}
+
+
+int lookup(int m)
+{
+	
+		for (int k = 0; k < copyName.size(); ++k)
+		{
+			if (name[m] == copyName[k])
+			return k;	
+		}
+	
+}
+void printVec(const vector<string> &name, const vector<double> &age)
+{
+	for (int m = 0; m < copyName.size(); ++m)
+	{
+		for (int k = 0; k < copyName.size(); ++k)
+		{
+			if (name[m] == copyName[k])
+				cout << name[m] << "   " << "  The age is:" << age[lookup(m)] << endl;
+		}
+	}
+}
+
+int main()
+	
+{
+	
+	welcome();
+	getName();
+	getAge();
+	copyV();
+	Vsort();
+
+	printVec(name, age);
+
+	return 0;
+		
+}
